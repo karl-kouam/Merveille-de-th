@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Les Merveilles de TH</title>
+
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <script>
+    fetch("/api/nouveautes")
+      .then((res) => res.json())
+      .then((produits) => {
+        const zone = document.getElementById("nouveautes");
+
+        produits.forEach((produit) => {
+          zone.innerHTML += `
+            <div class="produit-card">
+                <img src="/image/${produit.image}">
+                <h3>${produit.nom}</h3>
+                <p>${produit.description}</p>
+                 <div class="prix">
+                   ${produit.prix} FCFA / ${produit.unite}
+                </div>
+            </div>
+        `;
+        });
+      });
+
+    fetch("/api/meilleurs")
+      .then((res) => res.json())
+      .then((produits) => {
+        const zone = document.getElementById("meilleurs");
+
+        produits.forEach((produit) => {
+          zone.innerHTML += `
+            <div class="produit-card">
+                <img src="/image/${produit.image}">
+                <h3>${produit.nom}</h3>
+                <p>${produit.description}</p>
+                <div class="prix">
+                   ${produit.prix} FCFA / ${produit.unite}
+                </div>
+            </div>
+        `;
+        });
+      });
+  </script>
+  <body>
+    <!-- HEADER -->
+
+    <header class="hero-home">
+      <h1>Bienvenue sur Les Merveilles de TH</h1>
+
+      <p>
+        La plateforme où vous découvrez un nouveau visage de la mode, des
+        parfums et des pâtisseries.
+      </p>
+
+      <nav class="menu-home">
+        <a href="parfums.html">Parfums</a>
+        <a href="habits.html">Habits</a>
+        <a href="pizza.html">Miniardises</a>
+        <a href="patisseries.html">Pâtisseries</a>
+        <a href="apropos.html">A propos</a>
+      </nav>
+    </header>
+
+    <!-- PRESENTATION -->
+
+    <section class="presentation">
+      <h2>Découvrez nos univers</h2>
+
+      <div class="categories">
+        <a href="parfums.html">
+          <div class="categorie">
+            <h3>🌸 Parfums</h3>
+
+            <p>
+              Découvrez notre collection de parfums élégants et raffinés pour
+              toutes les occasions.
+            </p>
+          </div>
+        </a>
+
+        <a href="habits.html">
+          <div class="categorie">
+            <h3>👗 Habits</h3>
+
+            <p>
+              Une sélection de vêtements modernes pour hommes, femmes et
+              enfants.
+            </p>
+          </div>
+        </a>
+
+        <a href="patisseries.html">
+          <div class="categorie">
+            <h3>🎂 Pâtisseries</h3>
+
+            <p>
+              Des créations gourmandes pour vos anniversaires, mariages et
+              événements.
+            </p>
+          </div>
+        </a>
+        <a href="pizza.html">
+          <div class="categorie">
+            <h3> Miniarderies</h3>
+
+            <p>
+             Des créations a couper le souffle pour vos apperitifs et événements.
+            </p>
+          </div>
+        </a>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+
+    <div class="contact-bas">
+      <a href="contact.html" class="btn-contact"> Nous contacter </a>
+    </div>
+
+    <section class="accueil-produits">
+      <h2>Nos nouveautés</h2>
+
+      <div class="products" id="nouveautes"></div>
+    </section>
+
+    <section class="accueil-produits">
+      <h2>Nos meilleurs produits</h2>
+
+      <div class="products" id="meilleurs"></div>
+    </section>
+
+    <!-- FOOTER -->
+
+    <footer>
+      <p>© 2026 Les Merveilles de TH - Tous droits réservés</p>
+    </footer>
+  </body>
+</html>

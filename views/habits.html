@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Habits - Les Merveilles de TH</title>
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <script>
+    fetch("/habits/api")
+      .then((response) => response.json())
+      .then((produits) => {
+        const container = document.getElementById("liste-produits");
+
+        produits.forEach((produit) => {
+          container.innerHTML += `
+                <div class="produit-card">
+
+                    <img src="/image/${produit.image}"
+                         alt="${produit.nom}">
+
+                    <h3>${produit.nom}</h3>
+
+                    <p>${produit.description}</p>
+
+                    <div class="prix">
+                         ${produit.prix} FCFA / ${produit.unite}
+                    </div>
+
+                </div>
+            `;
+        });
+      });
+  </script>
+  <body>
+    <aside class="sidebar">
+      <div class="logo">
+        <img src="/image/logo.png" alt="Les Merveilles de TH" />
+      </div>
+
+      <nav>
+        <a href="accueil.html">Accueil</a>
+        <a href="parfums.html">Parfums</a>
+        <a href="pizza.html">Miniardises</a>
+        <a href="patisseries.html">Pâtisseries</a>
+        <a href="contact.html">Contact</a>
+        <a href="apropos.html">À propos</a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <div class="hero">
+        <h1>Nos Habits</h1>
+        <p>L'élégance dans chaque fragrance</p>
+      </div>
+
+      <section class="products" id="liste-produits"></section>
+    </main>
+  </body>
+</html>
