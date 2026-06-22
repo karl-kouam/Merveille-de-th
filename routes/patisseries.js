@@ -5,7 +5,7 @@ const connexion = require("../database/connexion");
 router.get("/api", (req, res) => {
 
     connexion.query(
-        "SELECT * FROM produit WHERE categorie='patisserie'",
+        "SELECT * FROM produit WHERE categorie='patisseries'",
         (err, result) => {
 
             if(err){
