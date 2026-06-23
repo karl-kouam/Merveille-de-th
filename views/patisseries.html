@@ -33,112 +33,6 @@
             `;
         });
       });
-    let panier = [];
-    function ajouterPanier(nom, prix) {
-      const existe = panier.find((produit) => produit.nom === nom);
-
-      if (existe) {
-        existe.quantite++;
-      } else {
-        panier.push({
-          nom: nom,
-          prix: prix,
-          quantite: 1,
-        });
-      }
-
-      afficherPanier();
-    }
-    function augmenter(nom) {
-      const produit = panier.find((p) => p.nom === nom);
-
-      produit.quantite++;
-
-      afficherPanier();
-    }
-    function diminuer(nom) {
-      const produit = panier.find((p) => p.nom === nom);
-
-      produit.quantite--;
-
-      if (produit.quantite <= 0) {
-        panier = panier.filter((p) => p.nom !== nom);
-      }
-
-      afficherPanier();
-    }
-    function afficherPanier() {
-      const contenu = document.getElementById("contenu-panier");
-
-      const totalDiv = document.getElementById("total-panier");
-
-      contenu.innerHTML = "";
-
-      let total = 0;
-
-      panier.forEach((produit) => {
-        const sousTotal = produit.prix * produit.quantite;
-
-        total += sousTotal;
-
-        contenu.innerHTML += `
-
-            <div class="ligne-panier">
-
-                <strong>
-                    ${produit.nom}
-                </strong>
-
-                <div class="quantite">
-
-                    <button
-                        onclick="diminuer('${produit.nom}')">
-                        -
-                    </button>
-
-                    <span>
-                        ${produit.quantite}
-                    </span>
-
-                    <button
-                        onclick="augmenter('${produit.nom}')">
-                        +
-                    </button>
-
-                </div>
-
-                <div>
-                    ${sousTotal} FCFA
-                </div>
-
-            </div>
-
-        `;
-      });
-
-      totalDiv.innerHTML = "Total : " + total + " FCFA";
-    }
-    function envoyerWhatsapp() {
-      let message = "Bonjour, je souhaite commander :%0A%0A";
-
-      let total = 0;
-
-      panier.forEach((produit) => {
-        message +=
-          "- " +
-          produit.nom +
-          " x" +
-          produit.quantite +
-          " = " +
-          produit.prix * produit.quantite +
-          " FCFA%0A";
-
-        total += produit.prix * produit.quantite;
-      });
-      message += "%0A Total : " + total + " FCFA";
-
-      window.open("https://wa.me/237699959147?text=" + message, "_blank");
-    }
   </script>
   <body>
     <aside class="sidebar">
@@ -152,7 +46,9 @@
         <a href="habits.html">Habits</a>
         <a href="contact.html">Contact</a>
         <a href="apropos.html">À propos</a>
+      
       </nav>
+      
     </aside>
 
     <main class="main-content">
@@ -162,7 +58,11 @@
       </div>
       <section class="products" id="liste-produits"></section>
     </main>
-    <div class="panier-flottant">
+    <div class="panier-flottant" id="panier-flottant">
+      <button class="btn-fermer" id="fermer-panier" onclick="fermerPanier()">
+        ✕
+      </button>
+
       <h2>🛒 Mon panier</h2>
 
       <div id="contenu-panier"></div>
@@ -173,5 +73,9 @@
         Commander sur WhatsApp
       </button>
     </div>
+    <button id="btn-panier" onclick="togglePanier()">🛒<span id="count">0</span></button>
+    <script src="/js/script.js"></script>
+   
+
   </body>
 </html>

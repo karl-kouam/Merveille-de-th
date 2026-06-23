@@ -15,16 +15,23 @@
 
         produits.forEach((produit) => {
           zone.innerHTML += `
-            <a href="${produit.categorie}.html">
+              <a href="${produit.categorie}.html" text-decoration="none">  
               <div class="produit-card">
+                
                 <img src="/image/${produit.image}">
                 <h3>${produit.nom}</h3>
                 <p>${produit.description}</p>
                  <div class="prix">
                    ${produit.prix} FCFA / ${produit.unite}
                 </div>
+                 
+                   <button
+                    class="btn-commande"
+                    onclick="ajouterPanier('${produit.nom}', ${produit.prix})">
+                    Ajouter au panier
+                 </button>
             </div>
-            </a>
+           </a>
         `;
         });
       });
@@ -36,16 +43,23 @@
 
         produits.forEach((produit) => {
           zone.innerHTML += `
-                <a href="${produit.categorie}.html">
+              <a href="${produit.categorie}.html" text-decoration="none">  
               <div class="produit-card">
+                
                 <img src="/image/${produit.image}">
                 <h3>${produit.nom}</h3>
                 <p>${produit.description}</p>
                  <div class="prix">
                    ${produit.prix} FCFA / ${produit.unite}
                 </div>
+                 
+                   <button
+                    class="btn-commande"
+                    onclick="ajouterPanier('${produit.nom}', ${produit.prix})">
+                    Ajouter au panier
+                 </button>
             </div>
-            </a>
+           </a>
         `;
         });
       });
@@ -68,6 +82,7 @@
         <a href="patisseries.html">Pâtisseries</a>
         <a href="apropos.html">A propos</a>
       </nav>
+      
     </header>
 
     <!-- PRESENTATION -->
@@ -138,6 +153,25 @@
 
       <div class="products" id="meilleurs"></div>
     </section>
+    <div class="panier-flottant" id="panier-flottant">
+      <button class="btn-fermer" id="fermer-panier" onclick="fermerPanier()">
+        ✕
+      </button>
+
+      <h2>🛒 Mon panier</h2>
+
+      <div id="contenu-panier"></div>
+
+      <div id="total-panier" class="total-panier"></div>
+
+      <button class="btn-whatsapp" onclick="envoyerWhatsapp()">
+        Commander sur WhatsApp
+      </button>
+    </div>
+    <button id="btn-panier" onclick="togglePanier()">🛒<span id="count">0</span></button>
+<script src="/js/script.js"></script>
+
+    </script>
 
     <!-- FOOTER -->
 

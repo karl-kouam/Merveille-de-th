@@ -22,21 +22,7 @@ router.get("/api/meilleurs", (req, res) => {
     );
 
 });
-// router.get("/api/nouveautes", (req, res) => {
 
-//     connexion.query(
-//         "SELECT * FROM produit WHERE nouveaute = 1",
-//         (err, result) => {
-
-//             if (err) {
-//                 return res.status(500).json(err);
-//             }
-
-//             res.json(result);
-//         }
-//     );
-
-// });
 router.get("/api/nouveautes", (req, res) => {
 
     connexion.query(
